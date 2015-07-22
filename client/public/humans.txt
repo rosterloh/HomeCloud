@@ -1,0 +1,12 @@
+/* TEAM */
+  Chef:Richard Osterloh
+	Contact: richard.osterloh [at] gmail.com
+	Twitter: @richard84
+	From:Cape Town, South Africa
+
+
+/* SITE */
+  Last update:2015/07/21
+	Language: English
+	Doctype:HTML5, CSS3
+	IDE: Atom, Angular2, TypeScript, Webpack

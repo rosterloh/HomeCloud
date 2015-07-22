@@ -1,0 +1,33 @@
+.login-card-wide.mdl-card {
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+.login-card-wide.mdl-card > * {
+  height: auto;
+}
+.login-card-wide > .mdl-card__title {
+  color: #fff;
+  height: 176px;
+  background: url('../assets/demos/welcome_card.jpg') center / cover;
+}
+.login-card-wide > .mdl-card__menu {
+  color: #fff;
+}
+.login-card-wide > .mdl-card__supporting-text {
+  margin: 40px;
+  flex-grow: 1;
+  padding: 0;
+  color: inherit;
+  width: calc(100% - 80px);
+}
+.login-card-wide > .mdl-card__supporting-text h4 {
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+section > header{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

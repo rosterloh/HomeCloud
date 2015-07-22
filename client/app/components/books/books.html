@@ -1,0 +1,29 @@
+<form
+  [ng-form-model]="bookForm"
+  (submit)="bookForm.valid && addBook($event, bookInput.value)"
+  novalidate
+>
+  <input type="text" [ng-form-control]="bookInput" autofocus>
+
+  <button>Add Book</button>
+
+  <span class="error-message" *ng-if="
+    bookForm.errors?.required &&
+    bookForm.dirty &&
+    bookForm.controls?.book?.touched
+  ">
+    Book is required
+  </span>
+
+</form>
+
+<ul>
+  <li *ng-for="var book of bookService.get('book'); var $index = index">
+    <p>
+      {{ book.value }}
+      <br>
+      <button (click)="removeBook($event, $index)">[Remove]</button>
+      <small>{{ book.created_at }}</small>
+    </p>
+  </li>
+</ul>

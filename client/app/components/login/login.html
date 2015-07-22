@@ -1,0 +1,46 @@
+<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+  <header class="section__play-btn mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--4-col-phone mdl-color--teal-100 mdl-color-text--white">
+    <i class="material-icons">account_box_outline</i>
+  </header>
+  <div class="mdl-card mdl-cell mdl-cell--9-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+  <!--<div class="mdl-card mdl-cell mdl-cell--12-col mdl-shadow--2dp login-card-wide">-->
+    <!--<div class="mdl-card__title">
+      <h2 class="mdl-card__title-text">Login</h2>
+    </div>-->
+    <div class="mdl-card__supporting-text">
+      <h4>Login</h4>
+      <form (submit)="login($event, username.value, password.value)">
+
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
+          <input class="mdl-textfield__input" type="text" #username id="username" />
+          <label class="mdl-textfield__label" for="username">Username</label>
+        </div>
+
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
+          <input class="mdl-textfield__input" type="password" #password id="password" />
+          <label class="mdl-textfield__label" for="password">Password</label>
+        </div>
+        <!--
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
+          <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sample4" />
+          <label class="mdl-textfield__label" for="sample4">Number...</label>
+          <span class="mdl-textfield__error">Input is not a number!</span>
+        </div>
+        -->
+        <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
+          Login
+        </button>
+      </form>
+    </div>
+    <!--<div class="mdl-card__actions mdl-card--border">
+      <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
+        Login
+      </button>
+    </div>-->
+    <div class="mdl-card__menu">
+      <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+        <i class="material-icons">share</i>
+      </button>
+    </div>
+  </div>
+</section>

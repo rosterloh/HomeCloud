@@ -1,10 +1,15 @@
 {
   "name": "home-cloud",
   "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
+  "description": "Node.JS application on Google Cloud Platform",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js",
+    "deploy": "gcloud preview app deploy app.yaml",
+    "build": "webpack",
+    "clean": "rm -rf node_modules && rm -rf tsd_typings",
+    "watch": "webpack --watch",
+    "server": "webpack-dev-server --inline --colors --display-error-details --display-cached"
   },
   "repository": {
     "type": "git",
@@ -17,7 +22,36 @@
   },
   "homepage": "https://github.com/rosterloh/HomeCloud#readme",
   "dependencies": {
-    "appengine": "^0.3.0",
-    "express": "^4.13.1"
+    "angular2": "^2.0.0-alpha.31",
+    "body-parser": "^1.13.2",
+    "express": "^4.13.1",
+    "gcloud": "^0.16.0",
+    "lodash": "^3.10.0",
+    "material-design-lite": "^1.0.0-3",
+    "mongodb": "^2.0.39",
+    "multer": "^1.0.1",
+    "mysql": "^2.8.0",
+    "reflect-metadata": "^0.1.0",
+    "rtts_assert": "2.0.0-alpha.31",
+    "rx": "^2.5.3",
+    "zone.js": "^0.5.2"
+  },
+  "devDependencies": {
+    "css-loader": "^0.15.5",
+    "exports-loader": "^0.6.2",
+    "expose-loader": "^0.7.0",
+    "file-loader": "^0.8.4",
+    "html-webpack-plugin": "^1.6.0",
+    "imports-loader": "^0.6.4",
+    "json-loader": "^0.5.2",
+    "node-libs-browser": "^0.5.2",
+    "raw-loader": "^0.5.1",
+    "style-loader": "^0.12.3",
+    "tsd": "^0.6.3",
+    "typescript": "^1.5.3",
+    "typescript-simple-loader": "^0.3.3",
+    "url-loader": "^0.5.6",
+    "webpack": "^1.10.1",
+    "webpack-dev-server": "^1.10.1"
   }
 }
