@@ -1,4 +1,3 @@
-# [START docker]
 # This Dockerfile is optional and was generated using:
 #   $ gcloud preview app gen-config .
 # The default base image is a Debian-based container with Node.js installed.
@@ -11,4 +10,3 @@ COPY package.json /app/
 RUN npm install
 COPY . /app/
 CMD npm start
-# [END docker]

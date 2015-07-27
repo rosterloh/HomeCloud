@@ -1,26 +1,31 @@
 "use strict";
 
 var express = require('express');
-var bodyParser = require('body-parser');
 
-
-module.exports = function(model, images) {
+module.exports = function(app, model, images, oauth2) {
 
   var router = express.Router();
 
   /*
     Use the images middleware to automatically upload images to Cloud Storage
   */
-  router.use(images.multer);
-  router.use(images.processUploads);
+  app.use(images.multer);
+  app.use(images.processUploads);
 
+
+  /*
+    Use the oauth middleware to automatically get the user's profile information
+    and expose login/logout URLs to templates.
+  */
+  app.use(oauth2.aware);
+  app.use(oauth2.template);
 
   function handleRpcError(err, res) {
     res.status(err.code || 500).send(err.message);
   }
 
 
-  router.use(function(req, res, next){
+  app.use(function(req, res, next){
     res.set('Content-Type', 'text/html');
     next();
   });
@@ -28,6 +33,18 @@ module.exports = function(model, images) {
 
   router.get('/', function list(req, res) {
     var books = model.list(10, req.query.pageToken,
+      function(err, entities, cursor) {
+        if (err) return handleRpcError(err, res);
+        res.render('books/list.jade', {
+          books: entities,
+          nextPageToken: cursor
+        });
+      }
+    );
+  });
+
+  router.get('/mine', oauth2.required, function list(req, res) {
+    var books = model.listBy(req.session.profile.id, 10, req.query.pageToken,
       function(err, entities, cursor) {
         if (err) return handleRpcError(err, res);
         res.render('books/list.jade', {
@@ -49,6 +66,14 @@ module.exports = function(model, images) {
 
   router.post('/add', function insert(req, res) {
     var data = req.body;
+
+    // If the user is logged in, set them as the creator of the book.
+    if (req.session.profile) {
+      data.createdBy = req.session.profile.displayName;
+      data.createdById = req.session.profile.id;
+    } else {
+      data.createdBy = 'Anonymous';
+    }
 
     // Was an image uploaded? If so, we'll use its public URL in cloud storage.
     if (req.files.image && req.files.image.cloudStoragePublicUrl) {

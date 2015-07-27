@@ -2,12 +2,16 @@
 <html lang="en">
 <head>
   <title>Home Cloud</title>
+
   <meta charset="utf-8">
-  <base href="/">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="description" content="My Dashboard for Home Cloud Control">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+
+  <base href="/">
+  <!-- ignore: Aplha 32 router fix -->
+  <script>baseElement = document.querySelector('base');baseElement.attr = baseElement.getAttribute;</script>
 
   <!--
     Angular 2
@@ -15,7 +19,7 @@
     this is not the full traceur only the polyfills
   -->
   <script type="text/javascript" src="lib/traceur-runtime.js"></script>
-  <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.indigo-pink.min.css">
+  <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.1/material.indigo-pink.min.css">
   <link href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>

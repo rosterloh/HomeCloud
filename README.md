@@ -10,7 +10,11 @@ gcloud [--verbosity debug] preview app run app.yaml
 gcloud --project YOUR-PROJECT-NAME-HERE preview app deploy app.yaml
 ```
 
+## Typings
+```bash
+$ tsd update -so
+```
+
 ## More info
-* [appengine-nodejs](https://github.com/GoogleCloudPlatform/appengine-nodejs)
 * [gcloud-node](https://github.com/GoogleCloudPlatform/gcloud-node)
 * [Google Cloud Platform Docs](https://cloud.google.com/nodejs/)

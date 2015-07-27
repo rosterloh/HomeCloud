@@ -7,14 +7,15 @@ import {Home} from './home/home';
 import {Login} from './login/login';
 import {Signup} from './signup/signup';
 
+let styles   = require('./app.css');
 let template = require('./app.html');
-
 
 @Component({
   selector: 'app'
 })
 @View({
   template: template,
+  styles: [ styles ],
   directives: [ LoggedInRouterOutlet ]
 })
 @RouteConfig([

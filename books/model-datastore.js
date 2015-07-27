@@ -3,7 +3,7 @@
 var gcloud = require('gcloud');
 
 
-module.exports = function(config) {
+module.exports = function(config, background) {
 
   var ds = gcloud.datastore.dataset(config.gcloud);
   var kind = 'Book';
@@ -12,6 +12,7 @@ module.exports = function(config) {
   /*
     Translates from Datastore's entity format to
     the format expected by the application.
+
     Datastore format:
       {
         key: [kind, id],
@@ -19,6 +20,7 @@ module.exports = function(config) {
           property: value
         }
       }
+
     Application format:
       {
         id: id,
@@ -35,12 +37,14 @@ module.exports = function(config) {
     Translates from the application's format to the datastore's
     extended entity property format. It also handles marking any
     specified properties as non-indexed. Does not translate the key.
+
     Application format:
       {
         id: id,
         property: value,
         unindexedProperty: value
       }
+
     Datastore extended format:
       [
         {
@@ -89,6 +93,23 @@ module.exports = function(config) {
 
 
   /*
+   Similar to ``list``, but only lists the books created by the specified
+   +    user.
+   +  */
+  function listBy(userId, limit, token, cb) {
+    var q = ds.createQuery([kind])
+      .filter('createdById =', userId)
+      .limit(limit)
+      .start(token);
+
+    ds.runQuery(q, function(err, entities, cursor) {
+      if (err) return cb(err);
+      cb(null, entities.map(fromDatastore), entities.length === limit ? cursor : false);
+    });
+  }
+
+
+  /*
     Creates a new book or updates an existing book with new data. The provided
     data is automatically translated into Datastore format. The book will be
     queued for background processing.
@@ -110,6 +131,7 @@ module.exports = function(config) {
       entity,
       function(err) {
         cb(err, err ? null : fromDatastore(entity));
+        background.queueBook(entity.key.path[entity.key.path.length - 1]);
       }
     );
   }
@@ -141,7 +163,8 @@ module.exports = function(config) {
     read: read,
     update: update,
     delete: _delete,
-    list: list
+    list: list,
+    listBy: listBy
   };
 
 };

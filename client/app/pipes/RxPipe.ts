@@ -20,7 +20,7 @@ export class RxPipe extends ObservablePipe {
       e => { throw e; }
     );
   }
-  transform(value: any, args: List<any> = null): any {
+  transform(value: any, args?: List<any> = null): any {
     return super.transform(value, args);
   }
   onDestroy(): void {
