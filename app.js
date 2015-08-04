@@ -1,12 +1,14 @@
-"use strict";
+'use strict';
 
 var path        = require('path'),
     express     = require('express'),
+    cors        = require('cors'),
     session     = require('cookie-session'),
     gcloud      = require('gcloud'),
     bodyParser  = require('body-parser'),
-    config      = require('./config')
-    logging     = require('./lib/logging')(config.logPath);
+    config      = require('./config'),
+    logging     = require('./lib/logging')(config.logPath),
+    gracefulShutdown = require('./lib/graceful-shutdown');
 
 var app = express();
 
@@ -20,6 +22,11 @@ app.set('trust proxy', true);
   accurately log requests.
 */
 app.use(logging.requestLogger);
+
+// CORS Requests
+if (config.cors) {
+  app.use(cors(config.cors));
+}
 
 /*
   Configure the session and session storage.
@@ -80,4 +87,5 @@ app.use(logging.errorLogger);
 var server = app.listen(config.port, '0.0.0.0', function() {
   console.log('App listening at http://%s:%s', server.address().address, server.address().port);
   console.log("Press Ctrl+C to quit.");
+  gracefulShutdown(server);
 });

@@ -6,22 +6,22 @@
   "bundle": "tsd_typings/tsd.d.ts",
   "installed": {
     "angular2/angular2.d.ts": {
-      "commit": "f6c8ca47193fb67947944a3170912672ac3e908e"
+      "commit": "77ec1408257c677f8fd8d6798ebaf6bd87c11b9d"
     },
     "angular2/router.d.ts": {
-      "commit": "f6c8ca47193fb67947944a3170912672ac3e908e"
+      "commit": "77ec1408257c677f8fd8d6798ebaf6bd87c11b9d"
     },
     "es6-promise/es6-promise.d.ts": {
-      "commit": "f6c8ca47193fb67947944a3170912672ac3e908e"
+      "commit": "77ec1408257c677f8fd8d6798ebaf6bd87c11b9d"
     },
     "rx/rx.d.ts": {
-      "commit": "f6c8ca47193fb67947944a3170912672ac3e908e"
+      "commit": "77ec1408257c677f8fd8d6798ebaf6bd87c11b9d"
     },
     "rx/rx-lite.d.ts": {
-      "commit": "f6c8ca47193fb67947944a3170912672ac3e908e"
+      "commit": "77ec1408257c677f8fd8d6798ebaf6bd87c11b9d"
     },
     "whatwg-fetch/whatwg-fetch.d.ts": {
-      "commit": "f6c8ca47193fb67947944a3170912672ac3e908e"
+      "commit": "77ec1408257c677f8fd8d6798ebaf6bd87c11b9d"
     }
   }
 }
