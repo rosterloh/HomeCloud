@@ -1,8 +1,8 @@
 /// <reference path="../../../typings/_custom.d.ts" />
 
-import {Component, View, Http, Headers} from 'angular2/angular2';
+import {Component, View, Http, Headers, Inject} from 'angular2/angular2';
 import {status, json} from '../../utils/fetch';
-import { Router, RouterLink } from 'angular2/router';
+import {Router, RouterLink } from 'angular2/router';
 
 let styles   = require('./login.css');
 let template = require('./login.html');
@@ -16,7 +16,10 @@ let template = require('./login.html');
   directives: [RouterLink]
 })
 export class Login {
-  constructor(public router: Router, public http: Http) {
+  router: Router;
+
+  constructor(@Inject(Router) router: Router) {
+      this.router = router;
   }
 
   login(event, username, password) {

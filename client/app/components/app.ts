@@ -1,6 +1,6 @@
 /// <reference path="../../typings/_custom.d.ts" />
 
-import {View, Component} from 'angular2/angular2';
+import {View, Component, Inject} from 'angular2/angular2';
 import {Location, RouteConfig, RouterLink, Router} from 'angular2/router';
 import {LoggedInRouterOutlet} from '../directives/LoggedInOutlet';
 import {Home} from './home/home';
@@ -25,6 +25,6 @@ let template = require('./app.html');
   { path: '/signup', as: 'signup', component: Signup }
 ])
 export class App {
-  constructor(public router: Router) {
+  constructor(@Inject(Router) router: Router) {
   }
 }

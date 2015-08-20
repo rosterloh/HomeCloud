@@ -49,13 +49,13 @@ module.exports = function startServer(appInitCb, options) {
     app.use(prettyPrint(app));
 
 
-    app.use(serveStatic(options.webRootPath, options.staticOptions));
+    app.use(express.satic(options.webRootPath, options.staticOptions));
 
     // 404 catch-all
     app.use(function(req, res, next) {
         next(new errors.NotFoundError());
     });
-    
+
     // Error handler
     app.use(errorHandler);
 

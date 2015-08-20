@@ -1,8 +1,8 @@
 /// <reference path="../../../typings/_custom.d.ts" />
 
-import {Component, View, coreDirectives, Http, Headers} from 'angular2/angular2';
+import {Component, View, coreDirectives, Http, Headers, Inject} from 'angular2/angular2';
 import {status, text} from '../../utils/fetch';
-import { Router} from 'angular2/router';
+import {Router} from 'angular2/router';
 
 let styles   = require('./home.css');
 let template = require('./home.html');
@@ -21,8 +21,10 @@ export class Home {
   decodedJwt: string;
   response: string;
   api: string;
+  router: Router;
 
-  constructor(public router: Router, public http: Http) {
+  constructor(@Inject(Router) router: Router, public http: Http) {
+    this.router = router;
     this.jwt = localStorage.getItem('jwt');
     this.decodedJwt = this.jwt && window.jwt_decode(this.jwt);
   }
